@@ -12,7 +12,7 @@ const server = http.createServer((req, res) =>{
 
     //Routing to appropriate file name
     let path = parsedURL.path;
-    if(path =="/"){
+    if(path == "/" || path == "/home"){
         path = "index.html";
     }else if (path == "/about"){
         path = "about.html";
