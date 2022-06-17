@@ -5,6 +5,7 @@ const url = require('url');
 const PORT = 5678;
 const hostName = 'localhost'
 
+//Create HTTP Server
 const server = http.createServer((req, res) =>{
     //Handle the request and send back a static file
     let parsedURL = url.parse(req.url, true);
@@ -20,11 +21,13 @@ const server = http.createServer((req, res) =>{
     }else{
         console.log(`Requested path ${path}`);
     }
+    //Set path of file to read
     let file = __dirname + "/"+path
 
-    //async read file function uses callback
+    //async read file function useing callback function
     fs.readFile(file, function (err, content){
         if(err){
+            //If incorect URL entered in the browser
             console.log(`File Not Found ${file}`);
             res.writeHead(404);
             res.end('Page Not Found');
@@ -51,7 +54,7 @@ const server = http.createServer((req, res) =>{
     });
 });
 
-
+//Listen to localhost server on the specified Port
 server.listen(PORT, hostName, () =>{
     console.log('Listening in port 5678');
 });
